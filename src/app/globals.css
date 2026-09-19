@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* Light multi-color palette */
+  --color-void: #f8fafc;
+  --color-panel: #ffffff;
+  --color-panel2: #f1f5f9;
+  --color-edge: #e2e8f0;
+  --color-mint: #10b981;
+  --color-mint-dim: #059669;
+  --color-amber: #f59e0b;
+  --color-rose: #f43f5e;
+  --color-azure: #3b82f6;
+  --color-violet: #8b5cf6;
+  --color-ink: #0f172a;
+  --color-muted: #64748b;
+  --color-soft: #94a3b8;
+}
+
+html,
+body {
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(16, 185, 129, 0.2);
+  color: #0f172a;
+}
+
+/* Subtle multi-color grid background */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(59, 130, 246, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.bg-stage {
+  background: linear-gradient(160deg, #f8fafc 0%, #f0f9ff 40%, #f0fdf4 100%);
+}
+
+/* Soft pulse for live indicators */
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.55; transform: scale(0.85); }
+}
+.pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* Card hover lift */
+.card-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(15, 23, 42, 0.12), 0 4px 10px -4px rgba(15, 23, 42, 0.06);
+}
+
+/* Gradient accents */
+.grad-mint {
+  background: linear-gradient(135deg, #10b981, #34d399);
+}
+.grad-azure {
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+}
+.grad-amber {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+}
+.grad-rose {
+  background: linear-gradient(135deg, #f43f5e, #fb7185);
+}
+.grad-violet {
+  background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+}
+
+/* Scrollbar subtle */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Mobile safe areas for future APK / PWA */
+@supports (padding: env(safe-area-inset-bottom)) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Component utilities */
+.panel {
+  @apply rounded-2xl border border-slate-200/80 bg-white shadow-sm;
+}
+
+.field {
+  @apply rounded-xl border border-slate-200 bg-white transition focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-100;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.glow-mint {
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+}
+
+/* Status badges */
+.badge-live {
+  @apply inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700 ring-1 ring-emerald-200;
+}
+
+.badge-virtual {
+  @apply inline-flex items-center gap-1.5 rounded-full bg-violet-50 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-violet-700 ring-1 ring-violet-200;
+}
+
+.badge-profit {
+  @apply inline-flex items-center rounded-lg bg-emerald-50 px-2 py-0.5 text-xs font-extrabold text-emerald-700 ring-1 ring-emerald-200;
+}
